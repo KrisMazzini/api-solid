@@ -1,6 +1,5 @@
 import { randomUUID } from 'node:crypto'
 
-import { Decimal } from '@prisma/client/runtime/library'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { InMemoryCheckInsRepository } from '@/repositories/in-memory/in-memory-check-ins-repository'
@@ -19,7 +18,7 @@ let userLatitude: number
 let userLongitude: number
 
 describe('Use Case: Get User Profile', async () => {
-  beforeEach(() => {
+  beforeEach(async () => {
     checkInsRepository = new InMemoryCheckInsRepository()
     gymsRepository = new InMemoryGymsRepository()
 
@@ -31,12 +30,12 @@ describe('Use Case: Get User Profile', async () => {
     userLatitude = -21.7601687
     userLongitude = -43.3484179
 
-    gymsRepository.gyms.push({
+    await gymsRepository.create({
       id: gymId,
       title: 'JavaScript Gym',
       description: null,
-      latitude: new Decimal(userLatitude),
-      longitude: new Decimal(userLongitude),
+      latitude: userLatitude,
+      longitude: userLongitude,
       phone: null,
     })
 
@@ -101,12 +100,12 @@ describe('Use Case: Get User Profile', async () => {
   })
 
   it('should not be possible to check in on distant gym', async () => {
-    gymsRepository.gyms.push({
+    await gymsRepository.create({
       id: 'distant-gym',
       title: 'JavaScript Gym',
       description: null,
-      latitude: new Decimal(-21.7730056),
-      longitude: new Decimal(-43.3465522),
+      latitude: -21.7730056,
+      longitude: -43.3465522,
       phone: null,
     })
 
