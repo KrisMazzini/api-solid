@@ -19,7 +19,7 @@ let gymId: string
 let userLatitude: number
 let userLongitude: number
 
-describe('Use Case: Get User Profile', async () => {
+describe('Use Case: Check In', async () => {
   beforeEach(async () => {
     checkInsRepository = new InMemoryCheckInsRepository()
     gymsRepository = new InMemoryGymsRepository()
