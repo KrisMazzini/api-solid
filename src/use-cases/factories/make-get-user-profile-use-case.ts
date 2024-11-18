@@ -4,7 +4,7 @@ import { GetUserProfileUseCase } from '../get-user-profile'
 
 export function makeGetUserProfileUseCase() {
   const usersRepository = new PrismaUsersRepository()
-  const getuserprofileUseCase = new GetUserProfileUseCase(usersRepository)
+  const getUserProfileUseCase = new GetUserProfileUseCase(usersRepository)
 
-  return getuserprofileUseCase
+  return getUserProfileUseCase
 }
