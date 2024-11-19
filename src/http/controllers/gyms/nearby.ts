@@ -5,8 +5,8 @@ import { makeFetchNearbyGymsUseCase } from '@/use-cases/factories/make-fetch-nea
 
 export async function nearby(request: FastifyRequest, reply: FastifyReply) {
   const fetchNearbyGymsQuerySchema = z.object({
-    userLatitude: z.number().min(-90).max(90),
-    userLongitude: z.number().min(-180).max(180),
+    userLatitude: z.coerce.number().min(-90).max(90),
+    userLongitude: z.coerce.number().min(-180).max(180),
     page: z.coerce.number().min(1).default(1),
   })
 
