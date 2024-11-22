@@ -48,8 +48,6 @@ describe('e2e: Nearby Gyms', async () => {
       .set('Authorization', `Bearer ${token}`)
       .send()
 
-    console.log(response)
-
     expect(response.statusCode).toEqual(200)
     expect(response.body.gyms).toHaveLength(1)
     expect(response.body.gyms).toEqual([
